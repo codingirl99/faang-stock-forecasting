@@ -60,11 +60,6 @@ This project predicts FAANG company stock prices using LSTM model on a Kaggle da
 
 ---
 
-### ROC Curve (IPO Class)
-
-
----
-
 ### Feature Importance
 
 ---

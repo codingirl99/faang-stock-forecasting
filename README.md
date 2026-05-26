@@ -1,128 +1,128 @@
 # faang-stock-forecasting
 
-# faang-stock-forecasting
-
 ## One-Sentence Summary  
-This project predicts Apple (AAPL) stock closing prices using Linear Regression, Random Forest, and LSTM models trained on a FAANG stock market dataset from Kaggle.
+This project predicts Apple (AAPL) stock closing prices using Linear Regression, Random Forest, and LSTM models trained on FAANG+ stock market data from Kaggle.
 
 ---
 
 ## Overview  
-This project explores stock price forecasting using traditional machine learning and deep learning models on historical FAANG stock market data from Kaggle. The dataset contains stock prices and technical indicators such as moving averages, RSI, MACD, Bollinger Bands, and volatility metrics. The problem is treated as a time-series regression task where the models predict the next-day closing price of Apple (AAPL) stock using the previous 20 trading days of market data. Linear Regression, Random Forest, and LSTM models are trained and evaluated using MAE and RMSE metrics. Among the tested models, Linear Regression achieved the strongest performance with the lowest prediction error (RMSE ≈ 3.89), while the LSTM model showed moderate forecasting performance and Random Forest produced the highest prediction error.
+This project explores stock price forecasting using traditional machine learning and deep learning models on a FAANG+ stock market dataset from Kaggle. The dataset includes historical stock prices for major technology companies such as Apple, Microsoft, Amazon, Google, Meta, and NVIDIA, along with technical indicators like moving averages, RSI, MACD, and Bollinger Bands. The problem is framed as a time-series regression task where models predict the next-day closing price of Apple (AAPL) using the previous 20 trading days of market data. Linear Regression, Random Forest, and LSTM models are trained and compared using MAE and RMSE. Linear Regression achieved the best performance, while LSTM performed moderately and Random Forest showed the weakest results due to difficulty handling sequential patterns.
 
 ---
 
 ## Summary of Work Done
 
 ### Data Exploration
-- **Type:** Tabular dataset (CSV file)  
+- **Type:** Tabular time-series dataset (CSV file)  
+- **Source:** Kaggle FAANG+ Stock Market Dataset  
+- **Companies Included:** AAPL, MSFT, AMZN, GOOGL/GOOG, META, NVDA  
 - **Features:** Date, Ticker, Open, High, Low, Close, Volume, SMA_7, SMA_21, EMA_12, EMA_26, RSI_14, MACD, MACD_Signal, Bollinger_Upper, Bollinger_Lower, Daily_Return, Volatility_7d  
-- **Target:** Next-day Apple stock closing price  
-- **Size:** ~14,964 rows  
-- **Stock Used for Modeling:** Apple (AAPL)  
-- **Split:** 80% training, 20% testing using chronological time-series splitting  
+- **Target:** Next-day closing price (AAPL model prediction target)  
+- **Size:** ~14,000+ rows (varies after filtering and preprocessing)  
+- **Modeling Focus:** Apple (AAPL) only  
+- **Split:** 80% training, 20% testing using chronological time-series split  
 
 ---
 
 ### Data Visualization  
 
 - **Stock Price Trends**
-    - Apple, Amazon, Meta, Netflix, and Google all show strong long-term upward growth trends.
-    - Some companies exhibit significantly higher volatility during market downturns.
-    - Stock prices sharply fluctuate during high-volatility periods.
+    - Major tech stocks show long-term upward trends.
+    - Each stock exhibits different levels of volatility over time.
+    - Market-wide fluctuations are visible during high volatility periods.
 
 <!-- Stock Price Trend Plot -->
 <figure>
-<img src="/visualizations/faang_stock_price_trends.png" alt="FAANG Stock Price Trends">
+<img src="/visualizations/faang_stock_price_trends.png" alt="Stock Price Trends">
 <figcaption></figcaption>
 </figure>
 
 ---
 
 - **Daily Return Distributions**
-    - Most daily returns cluster close to zero.
-    - All FAANG companies show occasional extreme positive and negative returns.
-    - Return distributions appear roughly centered but contain heavy tails.
+    - Returns are centered around zero for all stocks.
+    - Occasional extreme positive and negative returns exist.
+    - Distributions show heavy tails, indicating market volatility.
 
 <!-- Daily Return Distribution Plot -->
 <figure>
-<img src="/visualizations/faang_daily_return_distribution.png" alt="Daily Return Distribution">
+<img src="/visualizations/faang_daily_return_distribution.png" alt="Daily Returns">
 <figcaption></figcaption>
 </figure>
 
 ---
 
 - **Correlation Heatmap**
-    - Most FAANG stocks show positive correlations with one another.
-    - Correlation strength varies across companies.
+    - Stocks are strongly positively correlated across the tech sector.
+    - Market movements are highly interconnected between companies.
 
 <!-- Correlation Heatmap -->
 <figure>
-<img src="/visualizations/faang_correlation_heatmap.png" alt="FAANG Correlation Heatmap">
+<img src="/visualizations/faang_correlation_heatmap.png" alt="Correlation Heatmap">
 <figcaption></figcaption>
 </figure>
 
 ---
 
 - **Rolling Volatility Analysis**
-    - Volatility spikes appear during periods of major market movement.
-    - Netflix and Meta exhibit larger volatility swings compared to Apple.
-    - Rolling volatility highlights changing market risk over time.
+    - Volatility changes over time and increases during market events.
+    - Some stocks exhibit higher risk than others.
+    - Rolling volatility captures dynamic market behavior.
 
 <!-- Rolling Volatility Plot -->
 <figure>
-<img src="/visualizations/faang_rolling_volatility.png" alt="Rolling Volatility">
+<img src="/visualizations/faang_rolling_volatility.png" alt="Volatility">
 <figcaption></figcaption>
 </figure>
 
 ---
 
-### Preprocessing  
+## Preprocessing  
 - Converted Date column to datetime format  
-- Sorted stock data chronologically  
-- Filtered dataset to Apple (AAPL) stock only  
-- Created 20-day rolling time-series sequences  
-- Applied MinMaxScaler normalization to stock price features  
+- Sorted data chronologically  
+- Filtered dataset to Apple (AAPL) for modeling  
+- Created 20-day sliding window sequences  
+- Applied MinMax scaling to normalize features  
 - Reshaped data for:
-  - traditional machine learning models
-  - LSTM sequence modeling  
+  - Linear Regression & Random Forest (flattened input)
+  - LSTM (3D sequential input)
 
 ---
 
-### Problem Setup  
+## Problem Setup  
+
 This is a time-series regression problem.
 
 - **Input:** Previous 20 trading days of stock features  
-- **Output:** Next-day Apple stock closing price  
+- **Output:** Next-day Apple closing price  
 
-**Models Used:**
+### Models Used:
 - Linear Regression  
 - Random Forest Regressor  
-- Long Short-Term Memory (LSTM) Neural Network  
+- LSTM Neural Network  
 
-**Settings:**
+### Model Settings:
 - Linear Regression: default scikit-learn settings  
-- Random Forest: `n_estimators=100`  
+- Random Forest: 100 estimators  
 - LSTM:
-  - 2 LSTM layers
-  - 64 and 32 hidden units
-  - Dropout regularization
+  - 2 LSTM layers (64, 32 units)
+  - Dropout layers (0.2)
   - Adam optimizer
   - 40 epochs
-  - Batch size = 32
+  - Batch size = 32  
 
 ---
 
-### Training  
-- Implemented using Python, scikit-learn, and TensorFlow  
-- Models trained on CPU  
-- Traditional ML models used flattened stock sequences  
-- LSTM used sequential 3D time-series input data  
-- Minimal hyperparameter tuning performed  
+## Training  
+- Implemented in Python using scikit-learn and TensorFlow  
+- Chronological train-test split (no data leakage)  
+- Traditional ML models trained on flattened sequences  
+- LSTM trained on sequential time-series data  
+- Minimal hyperparameter tuning applied  
 
 ---
 
-### Model Performance
+## Model Performance  
 
 | Model | MAE | RMSE |
 |---|---|---|
@@ -130,83 +130,107 @@ This is a time-series regression problem.
 | Random Forest | 31.59 | 40.03 |
 | LSTM | 14.17 | 16.16 |
 
-- **Linear Regression** achieved the strongest performance with the lowest prediction error.  
-- **LSTM** captured overall stock trends but did not outperform Linear Regression.  
-- **Random Forest** struggled with sequential stock forecasting and produced the highest error values.  
+---
+
+## Prediction Comparison  
+
+- Linear Regression produced the closest predictions to actual stock prices.  
+- LSTM captured general trends but had higher deviation.  
+- Random Forest struggled with sequential learning and performed poorly overall.  
 
 ---
 
-### Prediction Comparison
+## Feature Importance  
 
-<!-- Prediction Comparison Plot -->
-<figure>
-<img src="/visualizations/aapl_prediction_comparison.png" alt="Prediction Comparison">
-<figcaption></figcaption>
-</figure>
+This project focuses on model comparison rather than interpretability.
 
-- Linear Regression predictions remained closest to actual stock prices overall.
-- LSTM predictions captured trend direction but showed larger deviations.
-- Random Forest predictions displayed the weakest generalization performance.
-
----
-
-### Feature Importance
-
-This project focused primarily on model comparison rather than feature interpretation.  
-
-The following stock price features were used:
-- Open
-- High
-- Low
-- Close
+Input features used:
+- Open  
+- High  
+- Low  
+- Close  
 
 Future work could explore:
-- technical indicator importance
-- SHAP analysis
-- feature selection techniques
-- additional engineered financial features
-
----
- 
-### Conclusions  
-- Traditional machine learning models can perform competitively on stock forecasting tasks.  
-- Linear Regression significantly outperformed both Random Forest and LSTM on this dataset.  
-- LSTM models may require larger datasets and additional tuning to outperform simpler regression methods.  
-- Random Forest struggled to model sequential stock behavior effectively.  
-- Stock forecasting remains highly challenging due to market volatility and non-stationary price movements.  
+- technical indicator importance  
+- SHAP analysis  
+- feature selection techniques  
 
 ---
 
-### Future Improvements  
+## Conclusions  
+
+- Linear Regression performed best despite being the simplest model.  
+- LSTM showed moderate performance but likely needs more tuning or data.  
+- Random Forest struggled with sequential stock behavior.  
+- Stock forecasting remains a noisy and difficult regression problem.  
+
+---
+
+## Future Improvements  
+
 - Predict stock returns instead of raw prices  
-- Train separate models for each FAANG company  
-- Add more technical indicators as input features  
+- Train separate models per company  
+- Add more technical indicators  
 - Apply hyperparameter tuning  
-- Implement walk-forward validation  
-- Test GRU or Transformer-based architectures  
-- Experiment with XGBoost or LightGBM models  
+- Use walk-forward validation  
+- Experiment with GRU or Transformer models  
+- Try XGBoost / LightGBM  
 
 ---
 
 ## How to Reproduce Results  
 
-1. Clone the repository  
+### 1. Clone repository
+```bash
+git clone <your-repo-url>
+```
 
-2. Download dataset from Kaggle:  
-   https://www.kaggle.com/datasets/vishardmehta/faang-stock-market-data-with-technical-indicators  
+---
 
-3. Place dataset in `/data` folder  
+### 2. Download dataset  
+https://www.kaggle.com/datasets/vishardmehta/faang-stock-market-data-with-technical-indicators  
 
-4. Install dependencies:
-   - pandas  
-   - numpy  
-   - matplotlib  
-   - seaborn  
-   - scikit-learn  
-   - tensorflow  
+Place it in:
+```
+/data/faang_stock_prices.csv
+```
 
-5. Run notebooks in order:
-   - `1_data_eda.ipynb` → exploratory data analysis and stock visualizations  
-   - `2_stock_prediction_models.ipynb` → preprocessing, Linear Regression, Random Forest, and LSTM modeling  
+---
 
-Note: MUST RUN notebook 2 in Google Colab as TensorFlow is preinstalled, so no additional TensorFlow setup is required.
+### 3. Install dependencies (EDA only)
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn
+```
+
+---
+
+### 4. Run Notebook 1 (Locally)
+- `1_data_eda.ipynb`  
+Includes:
+- data cleaning  
+- visualizations  
+- exploratory analysis  
+
+---
+
+### 5. Run Notebook 2 (Google Colab REQUIRED)
+
+Open:
+https://colab.research.google.com
+
+Steps:
+- Upload `2_stock_prediction_models.ipynb`
+- Upload `/data/faang_stock_prices.csv`
+- Run all cells sequentially  
+
+### Why Colab is required:
+- TensorFlow dependency (LSTM model)
+- Easier environment setup
+- Faster execution (no local installation issues)
+
+---
+
+## Notebook Structure  
+
+- `1_data_eda.ipynb` → Exploratory Data Analysis (local)  
+- `2_stock_prediction_models.ipynb` → ML + LSTM modeling (Google Colab)  

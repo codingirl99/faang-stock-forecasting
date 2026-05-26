@@ -229,9 +229,7 @@ Steps:
 - TensorFlow dependency for LSTM
 - Faster execution
 - Easier environment setup
-```
-
----
+  
 
 ## Notebook Structure  
 

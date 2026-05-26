@@ -22,11 +22,12 @@ This project explores stock price forecasting using traditional machine learning
 ---
 
 ### Data Visualization  
-**Stock Price Trends**
-- Apple, Amazon, Meta, Netflix, and Google all show strong long-term upward growth trends.
-- Some companies exhibit significantly higher volatility during market downturns.
-- Stock prices sharply fluctuate during high-volatility periods.
-<!-- Stock Price Trend Plot --> <figure> <img src="/visualizations/faang_stock_price_trends.png" alt="FAANG Stock Price Trends"> <figcaption></figcaption> </figure>
+- **Stock Price Trends**
+    - Apple, Amazon, Meta, Netflix, and Google all show strong long-term upward growth trends.
+    - Some companies exhibit significantly higher volatility during market downturns.
+    - Stock prices sharply fluctuate during high-volatility periods.
+    <!-- Stock Price Trend Plot --> <figure> <img src="/visualizations/faang_stock_price_trends.png" alt="FAANG Stock Price Trends"> <figcaption></figcaption> </figure>
+
 ---
 
 ### Preprocessing  

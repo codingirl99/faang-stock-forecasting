@@ -25,6 +25,7 @@ This project explores time-series stock price forecasting using machine learning
 ### Stock Closing Prices Over Time  
 - Stocks show long-term upward trends.
 - Different companies exhibit different volatility patterns.
+- META and MSFT show larger stock closing prices over time compared to other companies present.
 
 <figure>
 <img src="/visualizations/faang_stock_closing_prices.png">
@@ -35,6 +36,7 @@ This project explores time-series stock price forecasting using machine learning
 ### Daily Return Distributions  
 - Returns are centered around zero.
 - Heavy tails indicate frequent volatility spikes.
+- MSFT having high density and NVDA having lowest.
 
 <figure>
 <img src="/visualizations/faang_daily_return_distribution.png">
@@ -54,7 +56,7 @@ This project explores time-series stock price forecasting using machine learning
 
 ### 20-Day Rolling Volatility  
 - Volatility changes over time.
-- Some stocks are consistently more volatile than others.
+- Some stocks are consistently more volatile than others, including META and NVDA.
 
 <figure>
 <img src="/visualizations/faang_rolling_volatility.png">
@@ -64,7 +66,7 @@ This project explores time-series stock price forecasting using machine learning
 
 ### Boxplot of Daily Returns  
 - Most returns are concentrated around zero.
-- Outliers represent rare market shocks.
+- Outliers represent rare market shocks, significantly shown in the META and MSFT boxplots.
 
 <figure>
 <img src="/visualizations/faang_boxplot_daily_returns.png">

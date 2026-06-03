@@ -1,4 +1,4 @@
-# faang-stock-forecasting
+# 📈 faang-stock-forecasting
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-orange)
 ![Deep Learning](https://img.shields.io/badge/Deep%20Learning-LSTM-red)

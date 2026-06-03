@@ -239,3 +239,6 @@ Steps:
 
 - `1_exploratory_data_analysis.ipynb` → EDA + visualizations  
 - `2_data_preprocessing_and_modeling.ipynb` → ML + LSTM models (Colab)
+
+---
+Developed as a machine learning learning project with AI-assisted guidance for coding and debugging. The implementation was assembled, tested, and reviewed by me.

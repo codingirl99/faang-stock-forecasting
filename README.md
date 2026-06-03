@@ -1,8 +1,8 @@
 # faang-stock-forecasting
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Scikit-Learn](https://img.shields.io/badge/ML-Scikit--Learn-orange)
+![Deep Learning](https://img.shields.io/badge/Deep%20Learning-LSTM-red)
 ![Status](https://img.shields.io/badge/Project-Completed-green)
-
 
 ## One-Sentence Summary  
 This project predicts Apple (AAPL) stock closing prices using Linear Regression, Random Forest, and LSTM models trained on FAANG+ stock market data with technical indicators.

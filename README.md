@@ -241,4 +241,4 @@ Steps:
 - `2_data_preprocessing_and_modeling.ipynb` → ML + LSTM models (Colab)
 
 ---
-Developed as a machine learning learning project with AI-assisted guidance for coding and debugging. The implementation was assembled, tested, and reviewed by me.
+Developed as a machine and deep learning project with AI-assisted guidance for coding and debugging. The implementation was assembled, tested, and reviewed by me.
